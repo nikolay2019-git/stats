@@ -1,6 +1,6 @@
 package stats
 
-import "github.com/nikolay2019-git/bank/pkg/bank/types"
+import "github.com/nikolay2019-git/bank/pkg/types"
 
 //TotalInCategory находит сумму покупок в определённой категории
 func TotalInCategory(payments []types.Payment, category types.Category) types.Money {
