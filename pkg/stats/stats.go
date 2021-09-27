@@ -24,14 +24,16 @@ func TotalInCategory(payments []types.Payment, category types.Category) types.Mo
 func Avg(payments []types.Payment) types.Money {
 	//ToDo
 	sum := types.Money(0)
+	count := 0
 
 	for _, payment := range payments {
 		if payment.Status != "Fail" {
 			sum += payment.Amount
+			count++
 		}
 
 	}
-	result := types.Money(float64(sum) / float64(len(payments)))
+	result := types.Money(float64(sum) / float64(count))
 	return result
 
 }
