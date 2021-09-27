@@ -1,6 +1,6 @@
 package stats
 
-import "github.com/nikolay2019-git/bank/pkg/types"
+import "github.com/nikolay2019-git/bank/v2/pkg/types"
 
 //TotalInCategory находит сумму покупок в определённой категории
 func TotalInCategory(payments []types.Payment, category types.Category) types.Money {
@@ -10,7 +10,10 @@ func TotalInCategory(payments []types.Payment, category types.Category) types.Mo
 	for _, payment := range payments {
 
 		if payment.Category == category {
-			sum += payment.Amount
+			if payment.Status != "Fail" {
+				sum += payment.Amount
+			}
+
 		}
 
 	}
@@ -23,8 +26,10 @@ func Avg(payments []types.Payment) types.Money {
 	sum := types.Money(0)
 
 	for _, payment := range payments {
+		if payment.Status != "Fail" {
+			sum += payment.Amount
+		}
 
-		sum += payment.Amount
 	}
 	result := types.Money(float64(sum) / float64(len(payments)))
 	return result
