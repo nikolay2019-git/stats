@@ -34,7 +34,7 @@ func TestCategoriesAvg_empty(t *testing.T) {
 	}
 }
 
-func TestPeriodDynamic_empty(t *testing.T) {
+func TestPeriodsDynamic_empty(t *testing.T) {
 
 	first := map[types.Category]types.Money{
 		"auto": 10,
@@ -51,7 +51,7 @@ func TestPeriodDynamic_empty(t *testing.T) {
 		"food": 5,
 		"mobile":5,
 	}
-	result := PeriodDynamic(first, second)
+	result := PeriodsDynamic(first, second)
 
 	if len(result) == 0 {
 		t.Error("result len ==0")
