@@ -128,3 +128,42 @@ func CategoriesAvg(payments []types.Payment) map[types.Category]types.Money {
 	}
 	return categories
 }
+
+func PeriodDynamic(first map[types.Category]types.Money, second map[types.Category]types.Money) map[types.Category]types.Money {
+
+	resultMap := map[types.Category]types.Money{}
+
+	/*
+		Нужно ли создать объединение ключей из двух карт, если у них не совпадают ключи?
+		Как получить из второй карты то, чего нет в первом?
+		Лишний проход по всем ключам?
+		Или один проход по каждой карте?
+		Одновременный проход?
+
+
+
+
+	*/
+
+
+	for key, value := range first {
+		if _, ok := second[key]; ok {
+			resultMap[key] = second[key] - value
+		} else {
+			resultMap[key] = 0 - value
+		}
+
+	}
+	for key, value := range second {
+		if _, ok := resultMap[key]; !ok{
+			if _, ok:= first[key]; ok{
+				resultMap[key] = value - first[key]
+			} else{
+				resultMap[key] = value
+			}
+			
+		}
+	}
+
+	return resultMap
+}
